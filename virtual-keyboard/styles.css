@@ -1,3 +1,84 @@
+body {
+  margin: 0;
+  background-color: #1C1C1C;
+}
 
+.wrapper {
+  max-width: 1200px;
+  height: 100vh;
+  padding: 0 20px;
+  margin: auto;
+  text-align: center;
+  color: #ffffff;
+}
+
+.title {
+  margin: 0;
+  padding: 20px 0;
+}
+
+.textarea,
+.keyboard {
+  width: 100%;
+}
+
+.textarea {
+  height: 30vh;
+  margin-bottom: 30px;
+}
+
+.keyboard {
+  display: flex;
+  flex-direction: column;
+  background-color: #36454f;
+  border-radius: 10px;
+  width: 1200px;
+}
+.keyboard__row {
+  display: flex;
+  justify-content: space-between;
+  margin: 5px 15px;
+  gap: 10px;
+}
+.keyboard__row:first-child {
+  margin-top: 15px;
+}
+.keyboard__row:last-child {
+  margin-bottom: 15px;
+}
+.keyboard__key {
+  cursor: pointer;
+  background-color: #36454f;
+  border: 2px solid black;
+  border-radius: 10px;
+  text-align: center;
+  line-height: 60px;
+  width: 60px;
+  flex-shrink: 0;
+}
+.keyboard__key:hover {
+  background-color: #1c1c1c;
+}
+.keyboard__key--Backspace {
+  width: 209px;
+}
+.keyboard__key--Tab, .keyboard__key--Del {
+  width: 96.5px;
+}
+.keyboard__key--CapsLock {
+  width: 128px;
+}
+.keyboard__key--Shift {
+  width: 171px;
+}
+.keyboard__key--Ctrl {
+  width: 96.5px;
+}
+.keyboard__key--Enter {
+  width: 214px;
+}
+.keyboard__key-- {
+  width: 505px;
+}
 
 /*# sourceMappingURL=styles.css.map */
