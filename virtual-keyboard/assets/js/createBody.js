@@ -16,6 +16,29 @@ const changeLanguage = () => {
   localStorage.setItem('lang', lang);
 };
 
+const capsSwitch = (method) => {
+  keys[lang].forEach((row, i) => {
+    const keyboardRow = document.querySelector(`.keyboard__row--${i + 1}`).children;
+    row.forEach((key, j) => {
+      const letters = /^[a-zA-Zа-яА-Я]$/;
+      if (letters.test(key)) {
+        keyboardRow[j].textContent = key[method]();
+      }
+    });
+  });
+};
+
+const capsCheck = () => {
+  const capsKey = document.querySelector('.CapsLock');
+  const capsState = capsKey.classList.contains('keyboard__key--active');
+  if (capsState) {
+    capsSwitch('toLowerCase');
+  } else {
+    capsSwitch('toUpperCase');
+  }
+  capsKey.classList.toggle('keyboard__key--active');
+};
+
 const createBody = () => {
   const wrapper = document.createElement('div');
   wrapper.classList.add('wrapper');
@@ -55,4 +78,4 @@ const createBody = () => {
   keyboard.addEventListener('click', (event) => getTextAndPos(event));
 };
 
-export { createBody, changeLanguage };
+export { createBody, changeLanguage, capsCheck };

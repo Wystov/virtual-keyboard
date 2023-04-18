@@ -12,9 +12,11 @@ const keyDown = (event) => {
 
 const keyUp = (event) => {
   const { code } = event;
+  if (code === 'CapsLock') return;
   const isUnused = unusedKeys.some((key) => key === code);
   if (isUnused) return;
   const el = document.querySelector(`.${code}`);
+
   el.classList.remove('keyboard__key--active');
 };
 
