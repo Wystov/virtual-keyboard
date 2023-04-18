@@ -26,6 +26,7 @@ body {
 .textarea {
   height: 30vh;
   margin-bottom: 30px;
+  font-size: 26px;
 }
 
 .keyboard {
@@ -60,9 +61,16 @@ body {
     line-height: 60px;
     width: 60px;
     flex-shrink: 0;
+    transition: 0.3s;
 
     &:hover {
       background-color: #1c1c1c;
+      opacity: 0.5;
+    }
+
+    &:active {
+      border-radius: 100px;
+      opacity: 1;
     }
 
     &--Backspace {
