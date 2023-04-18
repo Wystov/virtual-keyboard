@@ -34,6 +34,7 @@ body {
   background-color: #36454f;
   border-radius: 10px;
   width: 1200px;
+  font-size: 22px;
 }
 .keyboard__row {
   display: flex;

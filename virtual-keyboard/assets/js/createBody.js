@@ -1,6 +1,21 @@
 import { keys } from './keys.js';
 import { getTextAndPos } from './typing.js';
 
+let lang = localStorage.getItem('lang') || 'eng';
+
+const changeLanguage = () => {
+  lang = lang === 'eng' ? 'ru' : 'eng';
+
+  keys[lang].forEach((row, i) => {
+    const keyboardRow = document.querySelector(`.keyboard__row--${i + 1}`).children;
+    row.forEach((key, j) => {
+      keyboardRow[j].textContent = key;
+    });
+  });
+
+  localStorage.setItem('lang', lang);
+};
+
 const createBody = () => {
   const wrapper = document.createElement('div');
   wrapper.classList.add('wrapper');
@@ -20,7 +35,7 @@ const createBody = () => {
   wrapper.append(title, textarea, keyboard, description, language);
   document.body.append(wrapper);
 
-  keys.eng.forEach((row, i) => {
+  keys[lang].forEach((row, i) => {
     const keyboardRow = document.createElement('div');
     keyboardRow.classList.add('keyboard__row', `keyboard__row--${i + 1}`);
     row.forEach((key, j) => {
@@ -40,4 +55,4 @@ const createBody = () => {
   keyboard.addEventListener('click', (event) => getTextAndPos(event));
 };
 
-export default createBody;
+export { createBody, changeLanguage };
