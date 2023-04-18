@@ -1,26 +1,43 @@
 import handleService from './handleService.js';
 import { serviceKeys } from './keys.js';
 
-const typing = (event) => {
+const doInput = (keyText, position, cursorAtEnd, text, keyCode) => {
   const textarea = document.querySelector('.textarea');
-  const { target } = event;
-  const position = textarea.selectionStart;
-  const text = textarea.value;
-  const cursorAtEnd = text.length === position;
-  if (target.classList.contains('keyboard__key')) {
-    const keyText = target.textContent;
-    const isService = serviceKeys.some((key) => key === keyText);
-    if (isService) {
-      handleService(keyText, position, text, cursorAtEnd);
-    } else if (cursorAtEnd) {
-      textarea.value += keyText;
-    } else if (text.length > position) {
-      const newText = text.slice(0, position) + keyText + text.slice(position, text.length);
-      textarea.value = newText;
-      textarea.setSelectionRange(position + 1, position + 1);
-    }
+  const isService = serviceKeys.some((key) => key === keyCode);
+  if (isService) {
+    handleService(keyCode, position, text, cursorAtEnd);
+  } else if (cursorAtEnd) {
+    textarea.value += keyText;
+  } else if (text.length > position) {
+    const newText = text.slice(0, position) + keyText + text.slice(position, text.length);
+    textarea.value = newText;
+    textarea.setSelectionRange(position + 1, position + 1);
   }
   textarea.focus();
 };
 
-export default typing;
+const typing = (event, position, cursorAtEnd, text, keyCode) => {
+  const { target } = event;
+  if (target.classList.contains('keyboard__key')) {
+    const keyText = target.textContent;
+    doInput(keyText, position, cursorAtEnd, text, keyCode);
+  }
+};
+
+const getTextAndPos = (event) => {
+  const textarea = document.querySelector('.textarea');
+  const position = textarea.selectionStart;
+  const text = textarea.value;
+  const cursorAtEnd = text.length === position;
+  if (event.type === 'click') {
+    const keyCode = event.target.classList[1];
+    typing(event, position, cursorAtEnd, text, keyCode);
+  }
+  if (event.type === 'keydown') {
+    const keyText = event.key;
+    const keyCode = event.code;
+    doInput(keyText, position, cursorAtEnd, text, keyCode);
+  }
+};
+
+export { typing, doInput, getTextAndPos };

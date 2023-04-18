@@ -62,29 +62,30 @@ body {
   background-color: #1c1c1c;
   opacity: 0.5;
 }
-.keyboard__key:active {
+.keyboard__key:active, .keyboard__key--active {
+  background-color: #1c1c1c;
   border-radius: 100px;
   opacity: 1;
 }
-.keyboard__key--Backspace {
+.keyboard__key.Backspace {
   width: 209px;
 }
-.keyboard__key--Tab, .keyboard__key--Del {
+.keyboard__key.Tab, .keyboard__key.Delete {
   width: 96.5px;
 }
-.keyboard__key--CapsLock {
+.keyboard__key.CapsLock {
   width: 128px;
 }
-.keyboard__key--Shift {
+.keyboard__key.ShiftLeft, .keyboard__key.ShiftRight {
   width: 171px;
 }
-.keyboard__key--Ctrl {
+.keyboard__key.ControlLeft, .keyboard__key.ControlRight {
   width: 96.5px;
 }
-.keyboard__key--Enter {
+.keyboard__key.Enter {
   width: 214px;
 }
-.keyboard__key-- {
+.keyboard__key.Space {
   width: 505px;
 }
 
