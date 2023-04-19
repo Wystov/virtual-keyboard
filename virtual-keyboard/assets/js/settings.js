@@ -1,8 +1,8 @@
-const settings = {
+const state = {
   lang: localStorage.getItem('lang') || 'eng',
   shift: 'normal',
   activeShift: false,
   activeCaps: false,
 };
 
-export default settings;
+export default state;

@@ -1,18 +1,18 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&display=swap");
 body {
-  font-family: "Roboto Mono", monospace;
   margin: 0;
   background-color: #1C1C1C;
-  user-select: none;
 }
 
 .wrapper {
+  font-family: "Roboto Mono", monospace;
   max-width: 1200px;
   height: 100vh;
   padding: 0 20px;
   margin: auto;
   text-align: center;
   color: #ffffff;
+  user-select: none;
 }
 
 .title {
@@ -28,6 +28,7 @@ body {
 .textarea {
   font-family: "Roboto Mono", monospace;
   box-sizing: border-box;
+  resize: none;
   padding: 15px;
   height: 30vh;
   margin-bottom: 30px;
@@ -57,7 +58,7 @@ body {
 .keyboard__key {
   cursor: pointer;
   background-color: #36454f;
-  border: 2px solid black;
+  border: 2px solid #1C1C1C;
   border-radius: 10px;
   text-align: center;
   line-height: 60px;
@@ -66,11 +67,11 @@ body {
   transition: 0.3s;
 }
 .keyboard__key:hover {
-  background-color: #1c1c1c;
+  background-color: #1C1C1C;
   opacity: 0.5;
 }
 .keyboard__key:active, .keyboard__key--active {
-  background-color: #1c1c1c;
+  background-color: #1C1C1C;
   border-radius: 100px;
   opacity: 1;
 }

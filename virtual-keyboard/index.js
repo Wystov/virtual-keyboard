@@ -1,5 +1,5 @@
-import { createBody } from './assets/js/createBody.js';
-import { keyUp, keyDown } from './assets/js/phys-keyboard.js';
+import createBody from './assets/js/create-body.js';
+import { keyUp, keyDown } from './assets/js/handle-keypress.js';
 
 createBody();
 

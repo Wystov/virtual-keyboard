@@ -1,10 +1,9 @@
-import handleService from './handleService.js';
+import handleService from './handle-service-keys.js';
 import { serviceKeys } from './keys.js';
 
 const doInput = (keyText, position, cursorAtEnd, text, keyCode) => {
   const textarea = document.querySelector('.textarea');
-  const isService = serviceKeys.some((key) => key === keyCode);
-  if (isService) {
+  if (serviceKeys.includes(keyCode)) {
     handleService(keyCode, position, text, cursorAtEnd);
   } else if (cursorAtEnd) {
     textarea.value += keyText;
@@ -25,8 +24,8 @@ const typing = (event, ...args) => {
 };
 
 const getTextAndPos = (event, keyValue) => {
-  const { type, code } = event;
   const textarea = document.querySelector('.textarea');
+  const { type, code } = event;
   const position = textarea.selectionStart;
   const text = textarea.value;
   const cursorAtEnd = text.length === position;
