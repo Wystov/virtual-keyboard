@@ -16,26 +16,27 @@ const doInput = (keyText, position, cursorAtEnd, text, keyCode) => {
   textarea.focus();
 };
 
-const typing = (event, position, cursorAtEnd, text, keyCode) => {
-  const { target } = event;
-  if (target.classList.contains('keyboard__key')) {
-    const keyText = target.textContent;
-    doInput(keyText, position, cursorAtEnd, text, keyCode);
+const typing = (event, ...args) => {
+  const { classList, textContent } = event.target;
+  if (classList.contains('keyboard__key')) {
+    const keyText = textContent;
+    doInput(keyText, ...args);
   }
 };
 
 const getTextAndPos = (event) => {
+  const { type, key, code } = event;
   const textarea = document.querySelector('.textarea');
   const position = textarea.selectionStart;
   const text = textarea.value;
   const cursorAtEnd = text.length === position;
-  if (event.type === 'click') {
+  if (type === 'click') {
     const keyCode = event.target.classList[1];
     typing(event, position, cursorAtEnd, text, keyCode);
   }
-  if (event.type === 'keydown') {
-    const keyText = event.key;
-    const keyCode = event.code;
+  if (type === 'keydown') {
+    const keyText = key;
+    const keyCode = code;
     doInput(keyText, position, cursorAtEnd, text, keyCode);
   }
 };

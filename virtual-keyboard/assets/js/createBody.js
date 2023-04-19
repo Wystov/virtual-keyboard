@@ -1,23 +1,9 @@
 import { keys } from './keys.js';
 import { getTextAndPos } from './typing.js';
-
-let lang = localStorage.getItem('lang') || 'eng';
-
-const changeLanguage = () => {
-  lang = lang === 'eng' ? 'ru' : 'eng';
-
-  keys[lang].forEach((row, i) => {
-    const keyboardRow = document.querySelector(`.keyboard__row--${i + 1}`).children;
-    row.forEach((key, j) => {
-      keyboardRow[j].textContent = key;
-    });
-  });
-
-  localStorage.setItem('lang', lang);
-};
+import settings from './settings.js';
 
 const capsSwitch = (method) => {
-  keys[lang].forEach((row, i) => {
+  keys[settings.lang][settings.shift].forEach((row, i) => {
     const keyboardRow = document.querySelector(`.keyboard__row--${i + 1}`).children;
     row.forEach((key, j) => {
       const letters = /^[a-zA-Zа-яА-Я]$/;
@@ -29,14 +15,20 @@ const capsSwitch = (method) => {
 };
 
 const capsCheck = () => {
-  const capsKey = document.querySelector('.CapsLock');
-  const capsState = capsKey.classList.contains('keyboard__key--active');
-  if (capsState) {
+  if (!settings.activeCaps) {
     capsSwitch('toLowerCase');
   } else {
     capsSwitch('toUpperCase');
   }
-  capsKey.classList.toggle('keyboard__key--active');
+};
+
+const shiftPress = () => {
+  keys[settings.lang][settings.shift].forEach((row, i) => {
+    const keyboardRow = document.querySelector(`.keyboard__row--${i + 1}`).children;
+    row.forEach((key, j) => {
+      keyboardRow[j].textContent = key;
+    });
+  });
 };
 
 const createBody = () => {
@@ -58,7 +50,7 @@ const createBody = () => {
   wrapper.append(title, textarea, keyboard, description, language);
   document.body.append(wrapper);
 
-  keys[lang].forEach((row, i) => {
+  keys[settings.lang][settings.shift].forEach((row, i) => {
     const keyboardRow = document.createElement('div');
     keyboardRow.classList.add('keyboard__row', `keyboard__row--${i + 1}`);
     row.forEach((key, j) => {
@@ -71,11 +63,25 @@ const createBody = () => {
     keyboard.append(keyboardRow);
   });
 
-  document.querySelector('.Space').textContent = ' ';
-
   document.addEventListener('keydown', (event) => event.preventDefault());
   keyboard.addEventListener('mousedown', (event) => event.preventDefault());
   keyboard.addEventListener('click', (event) => getTextAndPos(event));
 };
 
-export { createBody, changeLanguage, capsCheck };
+const changeLanguage = () => {
+  settings.lang = settings.lang === 'eng' ? 'ru' : 'eng';
+
+  keys[settings.lang][settings.shift].forEach((row, i) => {
+    const keyboardRow = document.querySelector(`.keyboard__row--${i + 1}`).children;
+    row.forEach((key, j) => {
+      keyboardRow[j].textContent = key;
+    });
+  });
+
+  localStorage.setItem('lang', settings.lang);
+  capsCheck();
+};
+
+export {
+  createBody, changeLanguage, capsCheck, capsSwitch, shiftPress,
+};

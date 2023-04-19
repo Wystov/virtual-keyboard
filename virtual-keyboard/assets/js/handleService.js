@@ -1,13 +1,18 @@
 const handleService = (keyCode, position, text, cursorAtEnd) => {
   const textarea = document.querySelector('.textarea');
+
+  const action = (pos, input) => {
+    textarea.value = input;
+    textarea.setSelectionRange(pos, pos);
+  };
+
   switch (keyCode) {
     case 'Backspace':
       if (cursorAtEnd) {
         textarea.value = textarea.value.slice(0, -1);
       } else {
         const newText = `${text.slice(0, position - 1)}${text.slice(position, text.length)}`;
-        textarea.value = newText;
-        textarea.setSelectionRange(position - 1, position - 1);
+        action(position - 1, newText);
       }
       break;
     case 'Tab':
@@ -15,15 +20,13 @@ const handleService = (keyCode, position, text, cursorAtEnd) => {
         textarea.value += '    ';
       } else {
         const newText = `${text.slice(0, position)}    ${text.slice(position, text.length)}`;
-        textarea.value = newText;
-        textarea.setSelectionRange(position + 4, position + 4);
+        action(position + 4, newText);
       }
       break;
     case 'Delete':
       if (!cursorAtEnd) {
         const newText = `${text.slice(0, position)}${text.slice(position + 1, text.length)}`;
-        textarea.value = newText;
-        textarea.setSelectionRange(position, position);
+        action(position, newText);
       }
       break;
     case 'Enter':
@@ -31,8 +34,7 @@ const handleService = (keyCode, position, text, cursorAtEnd) => {
         textarea.value += '\n';
       } else {
         const newText = `${text.slice(0, position)}\n${text.slice(position, text.length)}`;
-        textarea.value = newText;
-        textarea.setSelectionRange(position + 1, position + 1);
+        action(position + 1, newText);
       }
       break;
     case 'CapsLock':
