@@ -63,6 +63,8 @@ const createBody = () => {
     keyboard.append(keyboardRow);
   });
 
+  document.querySelector('.Space').textContent = ' ';
+
   document.addEventListener('keydown', (event) => event.preventDefault());
   keyboard.addEventListener('mousedown', (event) => event.preventDefault());
   keyboard.addEventListener('click', (event) => getTextAndPos(event));

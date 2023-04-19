@@ -1,6 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&display=swap');
+
 body {
+  font-family: 'Roboto Mono', monospace;
   margin: 0;
   background-color: #1C1C1C;
+  user-select: none;
 }
 
 .wrapper {
@@ -24,6 +28,8 @@ body {
 }
 
 .textarea {
+  font-family: 'Roboto Mono', monospace;
+  box-sizing: border-box;
   padding: 15px;
   height: 30vh;
   margin-bottom: 30px;

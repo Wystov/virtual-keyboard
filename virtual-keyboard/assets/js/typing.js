@@ -24,8 +24,8 @@ const typing = (event, ...args) => {
   }
 };
 
-const getTextAndPos = (event) => {
-  const { type, key, code } = event;
+const getTextAndPos = (event, keyValue) => {
+  const { type, code } = event;
   const textarea = document.querySelector('.textarea');
   const position = textarea.selectionStart;
   const text = textarea.value;
@@ -35,9 +35,7 @@ const getTextAndPos = (event) => {
     typing(event, position, cursorAtEnd, text, keyCode);
   }
   if (type === 'keydown') {
-    const keyText = key;
-    const keyCode = code;
-    doInput(keyText, position, cursorAtEnd, text, keyCode);
+    doInput(keyValue, position, cursorAtEnd, text, code);
   }
 };
 
