@@ -23,4 +23,10 @@ const switchShift = (shiftKey) => {
   if (state.activeCaps) changeKeys(method);
 };
 
-export { switchCaps, switchShift };
+const switchBacklight = (button) => {
+  button.classList.toggle('keyboard__key--active');
+  const keys = document.querySelectorAll('.keyboard__key');
+  keys.forEach((key) => key.classList.toggle('keyboard__key--backlight'));
+};
+
+export { switchCaps, switchShift, switchBacklight };

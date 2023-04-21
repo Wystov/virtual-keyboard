@@ -7,15 +7,17 @@ import {
 } from './change-layout.js';
 
 const keyDown = (event) => {
-  const { type, target } = event;
+  const { type, target, repeat } = event;
   const code = type === 'keydown' ? event.code : target.classList[1];
-  if (event.repeat || !code || unusedKeys.includes(code)) return;
+  if ((repeat && event.shiftKey) || (event.repeat && code === 'CapsLock')
+    || !code || unusedKeys.includes(code)) return;
   const key = document.querySelector(`.${code}`);
-  if (event.ctrlKey && event.altKey) {
+  if (event.ctrlKey && code === 'AltLeft') {
+    key.classList.add('keyboard__key--active');
     changeLanguage();
   } else if (code === 'CapsLock') {
     switchCaps(key);
-  } else if (code === 'ShiftLeft' || code === 'ShiftRight') {
+  } else if (code === 'ShiftLeft') {
     switchShift(key);
   } else {
     key.classList.add('keyboard__key--active');
@@ -26,7 +28,7 @@ const keyDown = (event) => {
 const keyUp = (event) => {
   const code = event.type === 'keyup' ? event.code : event.target.classList[1];
   if (!code || unusedKeys.includes(code)) return;
-  if (code === 'ShiftLeft' || code === 'ShiftRight') {
+  if (!event.shiftKey && state.activeShift) {
     state.shift = 'normal';
     state.activeShift = false;
     changeKeys();

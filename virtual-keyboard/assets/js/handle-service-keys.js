@@ -37,15 +37,6 @@ const handleService = (keyCode, position, text, cursorAtEnd) => {
         action(position + 1, newText);
       }
       break;
-    case 'CapsLock':
-    case 'ShiftLeft':
-    case 'ShiftRight':
-    case 'ControlRight':
-    case 'AltRight':
-    case 'AltLeft':
-    case 'MetaLeft':
-    case 'ControlLeft':
-      break;
     default:
   }
 };
