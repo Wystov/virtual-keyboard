@@ -39,6 +39,28 @@ const handleService = (keyCode, position, text, cursorAtEnd) => {
         action(position + 1, newText);
       }
       break;
+    case 'ArrowLeft':
+      if (position) {
+        textarea.setSelectionRange(position - 1, position - 1);
+      }
+      break;
+    case 'ArrowRight':
+      textarea.setSelectionRange(position + 1, position + 1);
+      break;
+    case 'ArrowDown': {
+      const textareaWidth = parseInt(getComputedStyle(textarea).width, 10) - 30;
+      const lettersInRow = Math.round(textareaWidth / 15.78);
+      const rowDown = position + lettersInRow;
+      textarea.setSelectionRange(rowDown, rowDown);
+      break;
+    }
+    case 'ArrowUp': {
+      const textareaWidth = parseInt(getComputedStyle(textarea).width, 10) - 30;
+      const lettersInRow = Math.round(textareaWidth / 15.78);
+      const rowUp = lettersInRow > position ? 0 : position - lettersInRow;
+      textarea.setSelectionRange(rowUp, rowUp);
+      break;
+    }
     default:
   }
 };

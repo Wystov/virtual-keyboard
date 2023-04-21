@@ -2,9 +2,7 @@ import { getTextAndPos } from './typing.js';
 import { unusedKeys } from './keys.js';
 import state from './settings.js';
 import { switchCaps, switchShift } from './switch-state.js';
-import {
-  changeLanguage, changeKeys,
-} from './change-layout.js';
+import { changeLanguage, changeKeys } from './change-layout.js';
 
 const keyDown = (event) => {
   const { type, target, repeat } = event;

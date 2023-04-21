@@ -41,8 +41,6 @@ const keys = {
 };
 
 const unusedKeys = ['ShiftRight', 'Pause', 'Escape', 'PageUp', 'PageDown', 'End', 'Home', 'PrintScreen', 'Insert', 'MetaRight', 'ContextMenu', 'Numpad0', 'Numpad1', 'Numpad2', 'Numpad3', 'Numpad4', 'Numpad5', 'Numpad6', 'Numpad7', 'Numpad8', 'Numpad9', 'NumpadMultiply', 'NumpadAdd', 'NumpadSubtract', 'NumpadDecimal', 'NumpadDivide', 'NumpadEnter', 'F1', 'F2', 'F3', 'F4', 'F5', 'F6', 'F7', 'F8', 'F9', 'F10', 'F11', 'F12', 'NumLock', 'ScrollLock', 'IntlBackslash'];
-const serviceKeys = ['Backlight', 'Backspace', 'Tab', 'Delete', 'CapsLock', 'Enter', 'ShiftLeft', 'ControlLeft', 'MetaLeft', 'AltLeft', 'AltRight', 'ShiftRight', 'ControlRight'];
+const serviceKeys = ['ArrowLeft', 'ArrowDown', 'ArrowRight', 'ArrowUp', 'Backlight', 'Backspace', 'Tab', 'Delete', 'CapsLock', 'Enter', 'ShiftLeft', 'ControlLeft', 'MetaLeft', 'AltLeft', 'AltRight', 'ShiftRight', 'ControlRight'];
 
-export {
-  keys, serviceKeys, unusedKeys,
-};
+export { keys, serviceKeys, unusedKeys };
