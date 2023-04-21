@@ -31,6 +31,7 @@ const createBody = () => {
   });
 
   document.querySelector('.Space').textContent = ' ';
+  textarea.focus();
 
   document.addEventListener('keydown', (event) => event.preventDefault());
   keyboard.addEventListener('mousedown', (event) => event.preventDefault());

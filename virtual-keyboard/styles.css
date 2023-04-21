@@ -1,7 +1,37 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&display=swap");
+@keyframes text-animate {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    letter-spacing: -0.5em;
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@keyframes opacity {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@keyframes from-bottom {
+  0% {
+    transform: translateY(100vh);
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
 body {
   margin: 0;
   background-color: #1C1C1C;
+  overflow: hidden;
 }
 
 .wrapper {
@@ -21,6 +51,12 @@ body {
   padding: 20px 0;
 }
 
+.title,
+.description,
+.language {
+  animation: text-animate 2s;
+}
+
 .textarea,
 .keyboard {
   width: 100%;
@@ -34,6 +70,10 @@ body {
   height: 30vh;
   margin-bottom: 30px;
   font-size: 26px;
+  animation: opacity 2s;
+}
+.textarea:focus {
+  outline: none;
 }
 
 .keyboard {
@@ -42,6 +82,7 @@ body {
   background-color: #36454f;
   border-radius: 10px;
   font-size: 22px;
+  animation: from-bottom 1s;
 }
 .keyboard__row {
   display: flex;

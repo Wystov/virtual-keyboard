@@ -1,9 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&display=swap');
 @import 'variables';
+@import 'animation';
 
 body {
   margin: 0;
   background-color: $dark;
+  overflow: hidden;
 }
 
 .wrapper {
@@ -23,6 +25,12 @@ body {
   padding: 20px 0;
 }
 
+.title,
+.description,
+.language {
+  animation: text-animate 2s;
+}
+
 .textarea,
 .keyboard {
   width: 100%;
@@ -36,6 +44,11 @@ body {
   height: 30vh;
   margin-bottom: 30px;
   font-size: 26px;
+  animation: opacity 2s;
+
+  &:focus {
+    outline: none
+  }
 }
 
 .keyboard {
@@ -44,6 +57,7 @@ body {
   background-color: $lightDark;
   border-radius: 10px;
   font-size: 22px;
+  animation: from-bottom 1s;
 
   &__row {
     display: flex;
