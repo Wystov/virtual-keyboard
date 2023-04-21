@@ -10,6 +10,8 @@ const handleService = (keyCode, position, text, cursorAtEnd) => {
     case 'Backspace':
       if (cursorAtEnd) {
         textarea.value = textarea.value.slice(0, -1);
+      } else if (position === 0 && textarea.value) {
+        break;
       } else {
         const newText = `${text.slice(0, position - 1)}${text.slice(position, text.length)}`;
         action(position - 1, newText);
