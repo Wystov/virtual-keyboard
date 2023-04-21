@@ -12,10 +12,7 @@ const keyDown = (event) => {
   if ((repeat && event.shiftKey) || (event.repeat && code === 'CapsLock')
     || !code || unusedKeys.includes(code)) return;
   const key = document.querySelector(`.${code}`);
-  if (event.ctrlKey && code === 'AltLeft') {
-    key.classList.add('keyboard__key--active');
-    changeLanguage();
-  } else if (code === 'CapsLock') {
+  if (code === 'CapsLock') {
     switchCaps(key);
   } else if (code === 'ShiftLeft') {
     switchShift(key);
@@ -28,7 +25,9 @@ const keyDown = (event) => {
 const keyUp = (event) => {
   const code = event.type === 'keyup' ? event.code : event.target.classList[1];
   if (!code || unusedKeys.includes(code)) return;
-  if (!event.shiftKey && state.activeShift) {
+  if ((event.ctrlKey && code === 'AltLeft') || (event.altKey && code === 'ControlLeft')) {
+    changeLanguage();
+  } else if (code === 'ShiftLeft' && state.activeShift) {
     state.shift = 'normal';
     state.activeShift = false;
     changeKeys();
