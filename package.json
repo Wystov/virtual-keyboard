@@ -4,8 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "sass": "sass --watch assets/sass/style.scss styles.css",
-    "eslint": ""
+    "sass": "sass --watch assets/sass/style.scss styles.css"
   },
   "keywords": [],
   "author": "",
