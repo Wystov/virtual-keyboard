@@ -1,8 +1,12 @@
-const state = {
-  lang: localStorage.getItem('lang') || 'eng',
-  shift: 'normal',
-  activeShift: false,
-  activeCaps: false,
-};
+class Settings {
+  constructor() {
+    this.lang = localStorage.getItem('lang') || 'eng';
+    this.shift = 'normal';
+    this.activeShift = false;
+    this.activeCaps = false;
+  }
+}
+
+const state = new Settings();
 
 export default state;
